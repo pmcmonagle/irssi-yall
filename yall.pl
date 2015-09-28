@@ -16,8 +16,8 @@
 # /set yall_silly <ON|OFF>
 # * This will replace any occurance of the term 'guys' with a silly
 #   gender-neutral alternative. eg:
-#   yall_silly OFF -- guys -> y'all | everyone | everybody | people | folks
-#   yall_silly ON  -- guys -> you uns | youse | dweebs | nerds
+#   yall_silly OFF -- guys -> people | folks | friends
+#   yall_silly ON  -- guys -> dweebs | nerds | rational human beings
 ##
 
 use strict;
@@ -32,7 +32,7 @@ $VERSION = '1.0';
     name        => 'yall',
     description => 'Intercept outgoing messages and replace instances of "guys" with a gender-neutral alternative.',
     license     => 'MIT',
-    url         => 'https://github.com/pmcmonagle/irssi-yall',
+    url         => 'TODO github',
     changed     => '12:00:00, Sep 28th, 2015 UYT',
 );
 
@@ -42,21 +42,16 @@ sub event_outgoing_msg {
     my ($message, $server, $witem) = @_;
     my $use_silly = Irssi::settings_get_bool('yall_silly');
 
-    # TODO consider removing qw
-    # and using regular strings
-    my @reg_strings = qw(
-        y'all
-        everyone
-        everybody
-        people
-        folks
+    my @reg_strings = (
+        'people',
+        'folks',
+        'friends'
     );
 
-    my @sil_strings = qw(
-        youns
-        youse
-        dweebs
-        nerds
+    my @sil_strings = (
+        'dweebs',
+        'nerds',
+        'rational human beings'
     );
 
     my @strings = $use_silly ? @sil_strings : @reg_strings;
