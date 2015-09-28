@@ -62,7 +62,7 @@ sub event_outgoing_msg {
     my @strings = $use_silly ? @sil_strings : @reg_strings;
     my $replace = $strings[rand @strings];
 
-    $message =~ s/guys/$replace/g;
+    $message =~ s/guys/$replace/gi;
     Irssi::signal_continue($message, $server, $witem);
 }
 
